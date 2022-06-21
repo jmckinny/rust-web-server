@@ -13,7 +13,7 @@ fn index(hit_count: &State<HitCount>) -> &'static str {
 }
 #[get("/metrics")]
 fn metrics(hit_count: &State<HitCount>) -> String{
-    format!("web_requests {}",hit_count.count.load(Ordering::Relaxed))
+    format!("# TYPE num_requests count\nnum_requests{{method=\"post\"}} {}",hit_count.count.load(Ordering::Relaxed))
 }
 
 #[launch]
